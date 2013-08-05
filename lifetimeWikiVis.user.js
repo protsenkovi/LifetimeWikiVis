@@ -221,30 +221,31 @@ window.addEventListener('load', function(e) {
                 $.cookie("persdates", cookie + createRecord(name, birthdate, deathdate));
             else
                 $.cookie("persdates", cookie + ";" + createRecord(name, birthdate, deathdate));
-        } else if (exists(name, persons)) {
+        } 
+        if (exists(name, persons)) {
            current_person = findPersonByName(name, persons); 
            current_person.bdayDate = new Date(current_person.bday);
            current_person.ddayDate = (current_person.dday == "alive")?new Date():new Date(current_person.dday);
-        }
-        
-        $("<span id='persdates' style='margin:5px'>[<a id='canv'>Chart</a><span id='chartrightbr'>]</span></span>").insertAfter("#toc");
-        $("#persdates").mouseenter(function() { 
-            $("#chartrightbr").before("<span id='chartmiddlsep'> | </span><a id='clearcookies'>Clear cookies</a>");
-            $("#clearcookies").click(function () { 
-                var ok = confirm("Вы действительно хотите удалить все даты из базы?");
-                if (ok) $.cookie("persdates", ""); 
-            });
-        }).mouseleave(function() { $("#clearcookies").remove(); $("#chartmiddlsep").remove(); });
 
-        $("#canv").click(function() {
-            if($.cookie("persdates") != "") { //" + ($("#persdates").width() -  $(".infobox").width()) + "
-                $('#persdates').empty().append("<canvas id='canvas' width=800 height=480 style='margin:10px'/>");
-                $("#persdates").unbind("mouseenter");
-                initCanvas(current_person);            
-            } else {
-                $('#canv').replaceWith("<a id='canv'>Показывать нечего</a>");
-            }
-        });        
+           $("<span id='persdates' style='margin:5px'>[<a id='canv'>Chart</a><span id='chartrightbr'>]</span></span>").insertAfter("#toc");
+           $("#persdates").mouseenter(function() { 
+                $("#chartrightbr").before("<span id='chartmiddlsep'> | </span><a id='clearcookies'>Clear cookies</a>");
+                $("#clearcookies").click(function () { 
+                    var ok = confirm("Вы действительно хотите удалить все даты из базы?");
+                    if (ok) $.cookie("persdates", ""); 
+                });
+            }).mouseleave(function() { $("#clearcookies").remove(); $("#chartmiddlsep").remove(); });
+
+           $("#canv").click(function() {
+                if($.cookie("persdates") != "") { //" + ($("#persdates").width() -  $(".infobox").width()) + "
+                    $('#persdates').empty().append("<canvas id='canvas' width=800 height=480 style='margin:10px'/>");
+                    $("#persdates").unbind("mouseenter");
+                    initCanvas(current_person);            
+                } else {
+                    $('#canv').replaceWith("<a id='canv'>Показывать нечего</a>");
+                }
+           });
+        }                
 });
 
 
