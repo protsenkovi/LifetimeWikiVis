@@ -3,10 +3,10 @@
 // @namespace  https://github.com/protsenkovi
 // @version    0.1
 // @description  Lifetime periods visualisation.
-// @match https://ru.wikipedia.org/wiki/*
-// @match http://ru.wikipedia.org/wiki/*
-// @match https://en.wikipedia.org/wiki/*
-// @match http://en.wikipedia.org/wiki/*
+// @include https://ru.wikipedia.org/wiki/*
+// @include http://ru.wikipedia.org/wiki/*
+// @include https://en.wikipedia.org/wiki/*
+// @include http://en.wikipedia.org/wiki/*
 // @copyright  2013, protsenkovi
 // ==/UserScript==
 
